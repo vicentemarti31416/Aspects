@@ -12,18 +12,21 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class AspectBean {
+public class AspectBean implements AspectInterface {
 
+	@Override
 	@Before("execution(public * com.example.aspects.service.UserServiceImpl+.showUserName())")
 	public void beforeFindUser() {
 		System.out.println("@Before");
 	}
 	
+	@Override
 	@After("execution(public * com.example.aspects.service.UserServiceImpl+.showUserName())")
 	public void afterFindUser() {
 		System.out.println("@After");
 	}
 	
+	@Override
 	@AfterReturning("execution(public * com.example.aspects.service.UserServiceImpl+.showUserName())")
 	public void afterReturning() {
 		System.out.println("@AfterReturning");
@@ -41,6 +44,7 @@ public class AspectBean {
 	}
 	*/
 	
+	@Override
 	@AfterThrowing("execution(public void com.example.aspects.service.UserServiceImpl+.forceFindFail())")
 	public void throwingException() {
 		System.out.println("@AfterThrowing");
